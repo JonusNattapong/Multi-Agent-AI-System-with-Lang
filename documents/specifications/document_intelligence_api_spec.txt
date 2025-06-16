@@ -1,0 +1,121 @@
+# Document Intelligence API Specification
+
+## Overview
+The Document Intelligence API provides programmatic access to document processing capabilities including text extraction, entity recognition, classification, and analysis.
+
+## Base URL
+```
+https://api.yourdomain.com/v1/document-intelligence
+```
+
+## Authentication
+All API requests require authentication using Bearer tokens:
+```
+Authorization: Bearer <your_api_token>
+```
+
+## Endpoints
+
+### POST /analyze
+Process and analyze a document
+
+**Request Body:**
+```json
+{
+  "document_path": "string",
+  "options": {
+    "enable_ocr": true,
+    "extract_entities": true,
+    "classify_document": true,
+    "enable_pii_masking": true,
+    "output_format": "json"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "document_id": "uuid",
+  "status": "completed",
+  "document_type": "invoice",
+  "extracted_text": "string",
+  "entities": [
+    {
+      "type": "PERSON",
+      "text": "John Doe",
+      "confidence": 0.95,
+      "start_pos": 45,
+      "end_pos": 53
+    }
+  ],
+  "classification": {
+    "type": "invoice",
+    "confidence": 0.89
+  },
+  "processing_time": 2.3
+}
+```
+
+### GET /status/{document_id}
+Check processing status
+
+**Response:**
+```json
+{
+  "document_id": "uuid",
+  "status": "processing|completed|failed",
+  "progress": 75,
+  "estimated_completion": "2024-01-15T10:30:00Z"
+}
+```
+
+### POST /batch
+Process multiple documents
+
+**Request Body:**
+```json
+{
+  "documents": [
+    {
+      "document_path": "string",
+      "options": { ... }
+    }
+  ],
+  "callback_url": "string"
+}
+```
+
+## Model Providers
+The API supports multiple model providers with automatic fallback:
+
+### Ollama (Local Processing)
+- Model: phi4, moondream
+- Latency: Low (on-premise)
+- Privacy: Maximum (no data leaves your infrastructure)
+
+### Hugging Face
+- Model: Various transformer models
+- Latency: Medium (API calls)
+- Privacy: High (data encrypted in transit)
+
+## Error Handling
+All errors follow standard HTTP status codes:
+- 400: Bad Request
+- 401: Unauthorized
+- 422: Unprocessable Entity
+- 500: Internal Server Error
+
+## Rate Limits
+- Free tier: 100 requests/hour
+- Pro tier: 1000 requests/hour
+- Enterprise: Custom limits
+
+## SDKs
+- Python: `pip install document-intelligence-sdk`
+- JavaScript: `npm install @company/document-intelligence`
+- cURL examples provided in documentation
+
+Last Updated: 2024-01-10
+Version: 1.2.0
+Status: Active

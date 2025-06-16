@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  multi-agent-system:
+    build: .
+    container_name: multi-agent-ai
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2}
+      - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+      - LANGCHAIN_PROJECT=${LANGCHAIN_PROJECT}
+      - DEBUG=${DEBUG:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./outputs:/app/outputs
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./.env:/app/.env:ro
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    
+  # Optional: Add a web interface service later
+  # web-interface:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.web
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - multi-agent-system
+
+networks:
+  default:
+    name: multi-agent-network

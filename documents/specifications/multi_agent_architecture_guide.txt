@@ -1,0 +1,159 @@
+# Multi-Agent System Architecture Guide
+
+## System Overview
+The Multi-Agent AI System leverages LangGraph for orchestrating complex workflows involving multiple specialized agents working together to accomplish document processing, research, and content creation tasks.
+
+## Core Components
+
+### Agent Architecture
+- **Research Agent**: Web search, data gathering, fact verification
+- **Writing Agent**: Content creation, summarization, report generation
+- **Review Agent**: Quality assurance, compliance checking, editing
+- **Document Intelligence Agent**: OCR, entity extraction, classification
+
+### Workflow Engine
+- LangGraph-based state management
+- Asynchronous agent coordination
+- Error handling and recovery
+- Performance monitoring
+
+### Model Integration
+- Multi-provider support (Ollama, Hugging Face)
+- Automatic fallback mechanisms
+- Load balancing and health checks
+- Model-specific optimizations
+
+## Technical Stack
+
+### Core Technologies
+- Python 3.8+
+- LangGraph for workflow orchestration
+- LangChain for agent framework
+- Docling for document processing
+- FastAPI for REST endpoints
+
+### Model Providers
+- **Ollama**: Local LLM hosting (Phi-4, Moondream)
+- **Hugging Face**: Cloud-based transformers
+- **Custom Models**: Integration support
+
+### Storage and Databases
+- Vector databases for semantic search
+- Document storage with metadata indexing
+- Cache layers for performance optimization
+
+## Deployment Options
+
+### Local Development
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Setup document intelligence
+./setup_document_intelligence.sh
+
+# Run examples
+python examples/basic_multi_agent.py
+```
+
+### Docker Deployment
+```bash
+# Build container
+docker build -t multi-agent-ai .
+
+# Run with compose
+docker-compose up -d
+```
+
+### Production Deployment
+- Kubernetes manifests included
+- Horizontal pod autoscaling
+- Persistent volume claims
+- Health check endpoints
+
+## Configuration Management
+
+### Environment Variables
+- Model provider endpoints
+- API keys and credentials
+- Performance tuning parameters
+- Feature flags
+
+### Settings Management
+- Centralized configuration in `src/config/settings.py`
+- Environment-specific overrides
+- Runtime configuration updates
+
+## Performance Optimization
+
+### Caching Strategies
+- LRU cache for frequent queries
+- Vector embedding caching
+- Model response caching
+- Document processing results
+
+### Scalability Features
+- Asynchronous processing
+- Batch operations
+- Queue management
+- Resource pooling
+
+## Monitoring and Logging
+
+### Observability
+- Structured logging with context
+- Performance metrics collection
+- Error tracking and alerting
+- Agent interaction traces
+
+### Health Checks
+- Model provider availability
+- System resource utilization
+- Queue depth monitoring
+- Response time tracking
+
+## Security Considerations
+
+### Data Protection
+- PII detection and masking
+- Encryption at rest and in transit
+- Access control and audit logging
+- Compliance with privacy regulations
+
+### Network Security
+- TLS termination
+- API rate limiting
+- Input validation and sanitization
+- Secure credential management
+
+## Extension Points
+
+### Custom Agents
+- Base agent class inheritance
+- Tool integration framework
+- State management patterns
+- Error handling conventions
+
+### Custom Tools
+- Tool interface implementation
+- Validation schemas
+- Performance monitoring
+- Documentation standards
+
+## Troubleshooting
+
+### Common Issues
+- Model provider connectivity
+- Memory usage optimization
+- Queue processing delays
+- Configuration conflicts
+
+### Debug Techniques
+- Enable verbose logging
+- Use development mode
+- Monitor resource usage
+- Check provider status
+
+Last Updated: 2024-01-14
+Version: 1.0
+Maintainer: Engineering Team

@@ -1,0 +1,35 @@
+langgraph>=0.0.55
+langchain>=0.1.0
+langchain-openai>=0.1.0
+langsmith>=0.1.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+typing-extensions>=4.0.0
+uuid
+
+# Document Intelligence Stack
+extract-thinker>=0.5.0
+docling>=2.0.0
+markitdown>=0.0.1a2
+ollama>=0.1.0
+
+# Hugging Face Integration
+transformers>=4.35.0
+torch>=2.0.0
+accelerate>=0.20.0
+bitsandbytes>=0.41.0  # For quantization
+sentence-transformers>=2.2.2
+tokenizers>=0.14.0
+
+# Additional document processing
+pypdf>=3.0.0
+pillow>=10.0.0
+pytesseract>=0.3.10
+
+# PII Masking and Privacy
+presidio-analyzer>=2.2.0
+presidio-anonymizer>=2.2.0
+
+# Optional OCR engines
+# azure-ai-formrecognizer>=3.3.0  # Uncomment if using Azure
+# google-cloud-documentai>=2.20.0  # Uncomment if using Google
